@@ -1,18 +1,27 @@
 <template lang="pug">
 div
-  v-card(color='grey lighten-4', flat='', height='200px')
+  v-card(style="max-width: 1200px; margin: auto;" color='grey lighten-4', flat='', height='200px')
     v-toolbar(color='white', light='')
-      v-btn(v-show="selected.length>0" flat icon color="red")
-        v-icon delete
+      v-tooltip(top='')
+        v-btn(v-show="selected.length>0" slot="activator" flat icon color="deep-orange darken-4")
+          v-icon delete
+        span Delete
+      v-tooltip(top='')
+        v-btn(v-show="selected.length===1" slot="activator" flat icon color="blue darken-3")
+          v-icon content_copy
+        span Clone
+      v-tooltip(top='')
+        v-btn(v-show="selected.length===1" slot="activator" flat icon color="yellow darken-3")
+          v-icon edit
+        span Edit
       v-spacer
       v-text-field(append-icon='search', label='Search', single-line='', hide-details='', v-model='search')
 
     v-data-table.elevation-1(
-      style="max-width: 1200px; margin: auto;"
       v-model='selected',
       v-bind:headers='headers',
       v-bind:items='items',
-      select-all='',
+      select-all,
       v-bind:pagination.sync='pagination',
       item-key='name'
       v-bind:search="search"

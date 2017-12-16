@@ -11,10 +11,10 @@ v-app(light='')
     v-toolbar-side-icon(@click.stop='drawer = !drawer', light='')
     v-btn(icon='', light='', @click.stop='miniVariant = !miniVariant')
       v-icon(v-html="miniVariant ? 'chevron_right' : 'chevron_left'")
-    v-btn(icon='', light='', @click.stop='clipped = !clipped')
-      v-icon web
-    v-btn(icon='', light='', @click.stop='fixed = !fixed')
-      v-icon remove
+    //- v-btn(icon='', light='', @click.stop='clipped = !clipped')
+    //-   v-icon web
+    //- v-btn(icon='', light='', @click.stop='fixed = !fixed')
+    //-   v-icon remove
     v-toolbar-title(v-text='title')
     v-spacer
     v-btn(icon='', light='')
@@ -30,9 +30,9 @@ v-app(light='')
   export default {
     data () {
       return {
-        clipped: false,
+        clipped: true,
         drawer: true,
-        fixed: false,
+        fixed: true,
         connections: [
           {
             name: 'Development'
