@@ -2,7 +2,7 @@
 v-app(light='')
   v-navigation-drawer(fixed='', :mini-variant='miniVariant', :clipped='clipped', v-model='drawer', app='')
     v-list.pt-0
-      v-list-tile(value='true', v-for='(item, i) in items', :key='i', exact='', @click='click')
+      v-list-tile(value='true', v-for='(item, i) in items', :key='i', exact='', router :to='item.to')
         v-list-tile-action
           v-icon(light='', v-html='item.icon')
         v-list-tile-content
@@ -17,7 +17,10 @@ v-app(light='')
       v-icon remove
     v-toolbar-title(v-text='title')
     v-spacer
-  v-content
+    v-btn(icon='', light='')
+      v-icon settings
+
+  v-content.content
     router-view
   v-footer(:fixed='fixed', app='')
     span © 2017 bluecolor
@@ -30,9 +33,17 @@ v-app(light='')
         clipped: false,
         drawer: true,
         fixed: false,
+        connections: [
+          {
+            name: 'Development'
+          }, {
+            name: 'Production'
+          }
+        ],
         items: [{
           icon: 'cloud',
-          title: 'Connections'
+          title: 'Connections',
+          to: 'connections'
         }, {
           icon: 'perm_identity',
           title: 'Users'
@@ -53,3 +64,7 @@ v-app(light='')
     }
   }
 </script>
+
+
+<style>
+</style>
